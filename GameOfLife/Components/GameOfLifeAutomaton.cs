@@ -225,11 +225,11 @@ namespace GameOfLife.Components
             // Draw the grid
             _grid.Draw(gameTime, spriteBatch);
 
-            // Draw the seven-segment display
-            _display.Draw(gameTime, spriteBatch);
-
             // Draw the cells
             ForEachCell((c, y, x) => c?.Draw(gameTime, spriteBatch));
+
+            // Draw the seven-segment display
+            _display.Draw(gameTime, spriteBatch);
         }
 
         #endregion

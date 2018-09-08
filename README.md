@@ -1,16 +1,17 @@
-# _Game of Life_
+# _Conway's Game of Life_
 
-A simple implementation of the cellular automaton _Conway's Game of Life_  using .NET & MonoGame.
+A simple implementation of the cellular automaton _Conway's Game of Life_
+made with .NET & [MonoGame](https://github.com/MonoGame/MonoGame).
 
 ## QuickStart
 
 - Clone the repository or download it as a ZIP
 - Restore NuGet packages
-- Run the program
+- Build and run the program
 
 ## Examples of patterns
 
-[Presets](GameOfLife/Components/AutomatonPreset.cs) are built-in
+Some [presets](GameOfLife/Components/AutomatonPreset.cs) are built-in
 to test the cellular automaton with well-known examples.
 
 The initial state can be customized by changing the `preset` argument
@@ -23,10 +24,10 @@ _automaton = new GameOfLifeAutomaton(ScreenSize.Scale(0.5f), 160, 110, 8,
 
 ## Controls
 
-Two controls are implemented:
+Two keyboard controls are implemented:
 
-- `+` (`Add`): speed up the simulation
-- `-` (`Subtract`): slow down the simulation
+- <kbd>+</kbd> (`Add`): speed up the simulation
+- <kbd>-</kbd> (`Subtract`): slow down the simulation
 
 ## License
 

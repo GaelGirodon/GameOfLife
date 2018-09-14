@@ -43,12 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Cell.cs" />
-    <Compile Include="Components\Extensions.cs" />
     <Compile Include="Components\GameComponent.cs" />
     <Compile Include="Components\Grid.cs" />
     <Compile Include="Components\SevenSegmentDisplay.cs" />
     <Compile Include="Components\GameOfLifeAutomaton.cs" />
     <Compile Include="Components\AutomatonPreset.cs" />
+      <Compile Include="Extensions.cs"/>
     <Compile Include="GameOfLifeGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

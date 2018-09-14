@@ -26,8 +26,8 @@ _automaton = new GameOfLifeAutomaton(ScreenSize.Scale(0.5f), 160, 110, 8, Color.
 
 Two keyboard controls are implemented:
 
-- <kbd>+</kbd> (`Add`): speed up the simulation
-- <kbd>-</kbd> (`Subtract`): slow down the simulation
+- <kbd>+</kbd> (`Add`) or <kbd>↑</kbd> (`Up`): speed up the simulation
+- <kbd>-</kbd> (`Subtract`) or <kbd>↓</kbd> (`Down`): slow down the simulation
 
 ## License
 

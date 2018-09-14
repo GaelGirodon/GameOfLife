@@ -16,7 +16,7 @@ namespace GameOfLife
         /// <summary>
         /// Screen default size.
         /// </summary>
-        private static Point ScreenSize => new Point(1200, 800);
+        private static Point ScreenSize => new Point(1600, 800);
 
         #endregion
 
@@ -50,7 +50,7 @@ namespace GameOfLife
             };
             Content.RootDirectory = "Content";
             // Create the cellular automaton
-            _automaton = new GameOfLifeAutomaton(ScreenSize.Scale(0.5f), 160, 110, 8, Color.DodgerBlue,
+            _automaton = new GameOfLifeAutomaton(ScreenSize.Scale(0.5f), 220, 110, 8, Color.DodgerBlue,
                 AutomatonPreset.GosperGliderGun, 100, 1500);
         }
 
@@ -100,9 +100,11 @@ namespace GameOfLife
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Add) && _automaton.CycleDuration.TotalMilliseconds > 10)
+            // Increase or decrease the simulation speed
+            if (Keyboard.GetState().IsAnyKeyDown(Keys.Add, Keys.Up)
+                && _automaton.CycleDuration.TotalMilliseconds > 10)
                 _automaton.CycleDuration -= TimeSpan.FromMilliseconds(1);
-            else if (Keyboard.GetState().IsKeyDown(Keys.Subtract))
+            else if (Keyboard.GetState().IsAnyKeyDown(Keys.Subtract, Keys.Down))
                 _automaton.CycleDuration += TimeSpan.FromMilliseconds(1);
 
             // Update the simulation logic

@@ -188,7 +188,8 @@ namespace GameOfLife.Components
             }
 
             // else: simulation cycle
-            _elapsedTimeSinceLastCycle = _elapsedTimeSinceLastCycle - CycleDuration;
+            _elapsedTimeSinceLastCycle = TimeSpan.FromTicks(
+                _elapsedTimeSinceLastCycle.Ticks % CycleDuration.Ticks);
             _display.Value = ++_cycleCount;
 
             // Run simulation

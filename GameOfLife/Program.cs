@@ -1,21 +1,20 @@
-﻿using System;
+using System;
 
-namespace GameOfLife
+namespace GameOfLife;
+
+/// <summary>
+/// The main program class.
+/// </summary>
+public static class Program
 {
     /// <summary>
-    /// The main program class.
+    /// The main entry point for the application.
+    /// Create a new Game of Life instance and run it.
     /// </summary>
-    public static class Program
+    [STAThread]
+    public static void Main()
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// Create a new Game of Life instance and run it.
-        /// </summary>
-        [STAThread]
-        public static void Main()
-        {
-            using (var game = new GameOfLifeGame())
-                game.Run();
-        }
+        using var game = new GameOfLifeGame();
+        game.Run();
     }
 }

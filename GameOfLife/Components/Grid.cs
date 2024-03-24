@@ -69,7 +69,7 @@ public class Grid : GameComponent
     public override void LoadContent(GraphicsDevice graphicsDevice)
     {
         _texture = new Texture2D(graphicsDevice, 1, 1);
-        _texture.SetData(new[] { _color });
+        _texture.SetData([_color]);
     }
 
     /// <inheritdoc />
@@ -102,7 +102,9 @@ public class Grid : GameComponent
     /// <param name="coords">Coordinates on the grid.</param>
     /// <returns>Position on the game viewport.</returns>
     public Point ComputePosition(Point coords)
-        => new Point(_center.X + coords.X * _size, _center.Y - _size - coords.Y * _size);
+    {
+        return new Point(_center.X + coords.X * _size, _center.Y - _size - coords.Y * _size);
+    }
 
     #endregion
 }

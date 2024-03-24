@@ -16,7 +16,7 @@ public class GameOfLifeGame : Game
     /// <summary>
     /// Screen default size.
     /// </summary>
-    private static Point ScreenSize => new Point(1600, 800);
+    private static Point ScreenSize => new(1600, 800);
 
     #endregion
 

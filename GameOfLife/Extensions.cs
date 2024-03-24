@@ -18,7 +18,9 @@ public static class Extensions
     /// <param name="ratio">The multiplication ratio.</param>
     /// <returns>The computed point.</returns>
     public static Point Scale(this Point p, float ratio)
-        => new Point((int)(p.X * ratio), (int)(p.Y * ratio));
+    {
+        return new Point((int)(p.X * ratio), (int)(p.Y * ratio));
+    }
 
     /// <summary>
     /// Get a list of the digits of a number.
@@ -26,7 +28,9 @@ public static class Extensions
     /// <param name="value">The number.</param>
     /// <returns>The digits as a list of numbers.</returns>
     public static IEnumerable<byte> Digits(this int value)
-        => Math.Abs(value).ToString().ToCharArray().ToList().Select(d => (byte)(d - '0'));
+    {
+        return Math.Abs(value).ToString().ToCharArray().ToList().Select(d => (byte)(d - '0'));
+    }
 
     /// <summary>
     /// Gets whether at least one of the given keys
@@ -36,5 +40,7 @@ public static class Extensions
     /// <param name="keys">The keys to check.</param>
     /// <returns>true if one of the given keys is currently being pressed, false elsewhere.</returns>
     public static bool IsAnyKeyDown(this KeyboardState state, params Keys[] keys)
-        => keys.ToList().Any(state.IsKeyDown);
+    {
+        return keys.ToList().Any(state.IsKeyDown);
+    }
 }

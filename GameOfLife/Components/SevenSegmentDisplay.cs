@@ -87,7 +87,7 @@ public class SevenSegmentDisplay : GameComponent
     public override void LoadContent(GraphicsDevice graphicsDevice)
     {
         _texture = new Texture2D(graphicsDevice, 1, 1);
-        _texture.SetData(new[] { _color });
+        _texture.SetData([_color]);
     }
 
     /// <inheritdoc />
@@ -145,17 +145,18 @@ public class SevenSegmentDisplay : GameComponent
     /// Each digit is associated to a list of seven booleans representing
     /// the seven segments of the display (a, b, c, d, e, f, g).
     /// </summary>
-    private static readonly Dictionary<byte, bool[]> Chars = new Dictionary<byte, bool[]> {
-        {0, new[] {true, true, true, true, true, true, false}},
-        {1, new[] {false, true, true, false, false, false, false}},
-        {2, new[] {true, true, false, true, true, false, true}},
-        {3, new[] {true, true, true, true, false, false, true}},
-        {4, new[] {false, true, true, false, false, true, true}},
-        {5, new[] {true, false, true, true, false, true, true}},
-        {6, new[] {true, false, true, true, true, true, true}},
-        {7, new[] {true, true, true, false, false, false, false}},
-        {8, new[] {true, true, true, true, true, true, true}},
-        {9, new[] {true, true, true, true, false, true, true}}
+    private static readonly Dictionary<byte, bool[]> Chars = new()
+    {
+        { 0, [true, true, true, true, true, true, false] },
+        { 1, [false, true, true, false, false, false, false] },
+        { 2, [true, true, false, true, true, false, true] },
+        { 3, [true, true, true, true, false, false, true] },
+        { 4, [false, true, true, false, false, true, true] },
+        { 5, [true, false, true, true, false, true, true] },
+        { 6, [true, false, true, true, true, true, true] },
+        { 7, [true, true, true, false, false, false, false] },
+        { 8, [true, true, true, true, true, true, true] },
+        { 9, [true, true, true, true, false, true, true] }
     };
 
     #endregion

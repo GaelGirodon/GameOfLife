@@ -138,24 +138,26 @@ public class GameOfLifeAutomaton : GameComponent
                 CreateCellsFromCoords(new[,] { { 0, 0 }, { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 1 } });
                 break;
             case AutomatonPreset.SmallestInfiniteGrowth:
-                CreateCellsFromCoords(new[,] {
-                    {-10, 10}, {-8, 10}, {-8, 9}, {-6, 8}, {-6, 7}, {-6, 6},
-                    {-4, 7}, {-4, 6}, {-4, 5}, {-3, 6}
+                CreateCellsFromCoords(new[,]
+                {
+                    { -10, 10 }, { -8, 10 }, { -8, 9 }, { -6, 8 }, { -6, 7 }, { -6, 6 },
+                    { -4, 7 }, { -4, 6 }, { -4, 5 }, { -3, 6 }
                 });
                 break;
             case AutomatonPreset.GosperGliderGun:
-                CreateCellsFromCoords(new[,] {
-                    {-17, 0}, {-17, -1}, {-16, 0}, {-16, -1},
-                    {-4, 2}, {-5, 2}, {-6, 1}, {-7, 0}, {-7, -1}, {-7, -2}, {-6, -3}, {-5, -4}, {-4, -4},
-                    {-3, -1}, {-2, 1}, {-1, 0}, {-1, -1}, {-1, -2}, {-2, -3}, {0, -1}, {-3, -1},
-                    {7, 4}, {7, 3}, {5, 3}, {4, 2}, {4, 1}, {4, 0}, {3, 2}, {3, 1}, {3, 0}, {5, -1}, {7, -1},
-                    {7, -2},
-                    {17, 2}, {17, 1}, {18, 2}, {18, 1}
+                CreateCellsFromCoords(new[,]
+                {
+                    { -17, 0 }, { -17, -1 }, { -16, 0 }, { -16, -1 },
+                    { -4, 2 }, { -5, 2 }, { -6, 1 }, { -7, 0 }, { -7, -1 }, { -7, -2 }, { -6, -3 }, { -5, -4 }, { -4, -4 },
+                    { -3, -1 }, { -2, 1 }, { -1, 0 }, { -1, -1 }, { -1, -2 }, { -2, -3 }, { 0, -1 }, { -3, -1 },
+                    { 7, 4 }, { 7, 3 }, { 5, 3 }, { 4, 2 }, { 4, 1 }, { 4, 0 }, { 3, 2 }, { 3, 1 }, { 3, 0 }, { 5, -1 }, { 7, -1 },
+                    { 7, -2 },
+                    { 17, 2 }, { 17, 1 }, { 18, 2 }, { 18, 1 }
                 });
                 break;
             case AutomatonPreset.Random:
                 var rand = new Random();
-                ForEachCell((cell, y, x) =>
+                ForEachCell((_, y, x) =>
                 {
                     if (rand.NextDouble() >= 0.75)
                         CreateCell(x, y);
@@ -175,7 +177,7 @@ public class GameOfLifeAutomaton : GameComponent
         _display.LoadContent(graphicsDevice);
         // Cell global texture
         _cellTexture = new Texture2D(graphicsDevice, 1, 1);
-        _cellTexture.SetData(new[] { _cellColor });
+        _cellTexture.SetData([_cellColor]);
     }
 
     /// <inheritdoc />
@@ -203,9 +205,9 @@ public class GameOfLifeAutomaton : GameComponent
             // Count current cell alive neighbours
             var aliveNeighbours = 0;
             for (var nY = Math.Max(0, y - 1); nY <= Math.Min(_cells.GetLength(0) - 1, y + 1); nY++)
-                for (var nX = Math.Max(0, x - 1); nX <= Math.Min(_cells.GetLength(1) - 1, x + 1); nX++)
-                    if ((nX != x || nY != y) && _cells[nY, nX] != null)
-                        aliveNeighbours++;
+            for (var nX = Math.Max(0, x - 1); nX <= Math.Min(_cells.GetLength(1) - 1, x + 1); nX++)
+                if ((nX != x || nY != y) && _cells[nY, nX] != null)
+                    aliveNeighbours++;
 
             // Game of Life algorithm
             if (cell == null && aliveNeighbours == 3)
@@ -228,7 +230,7 @@ public class GameOfLifeAutomaton : GameComponent
         _grid.Draw(gameTime, spriteBatch);
 
         // Draw the cells
-        ForEachCell((c, y, x) => c?.Draw(gameTime, spriteBatch));
+        ForEachCell((c, _, _) => c?.Draw(gameTime, spriteBatch));
 
         // Draw the seven-segment display
         _display.Draw(gameTime, spriteBatch);
@@ -245,8 +247,8 @@ public class GameOfLifeAutomaton : GameComponent
     private void ForEachCell(Action<Cell, int, int> action)
     {
         for (var y = 0; y < _cells.GetLength(0); y++)
-            for (var x = 0; x < _cells.GetLength(1); x++)
-                action.Invoke(_cells[y, x], y, x);
+        for (var x = 0; x < _cells.GetLength(1); x++)
+            action.Invoke(_cells[y, x], y, x);
     }
 
     /// <summary>
@@ -267,7 +269,9 @@ public class GameOfLifeAutomaton : GameComponent
     /// <param name="y">Y coordinate on the grid.</param>
     /// <returns>The cell index in the array.</returns>
     private Point GetCellIndexFromCoords(int x, int y)
-        => new Point(x + _cells.GetLength(1) / 2, y + _cells.GetLength(0) / 2);
+    {
+        return new Point(x + _cells.GetLength(1) / 2, y + _cells.GetLength(0) / 2);
+    }
 
     /// <summary>
     /// Create multiple cells from grid coordinates.
